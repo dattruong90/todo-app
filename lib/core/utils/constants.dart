@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:todo_app/size_config.dart';
 
 abstract class Constants {
   // Color
   static const cPrimaryColor = Color(0XFF5890e3);
   static const cPrimaryTextColor = Colors.white;
-  static const cSecondaryTextColor = Colors.black;
+  static const cPrimaryVariantTextColor = Colors.black;
+  static const cSecondTextColor = Color(0xFFBDBDBD);
   static const cBackgroundColor = Color(0xFFECEFF1);
+  static const cButtonBackgroundColor = Color(0XFFeb33ae);
+  static const cIconColor = Colors.white;
 
-  // Padding
-  static final cPadding_5 = getProportionateScreenWidth(5.0);
+  // Font size
+  static final cFontSize_15 = 15.0;
+  static final cFontSize_19 = 19.0;
 
-  // Margin
-  static final cMarginTop_20 = getProportionateScreenHeight(15.0);
+  // Pading size
+  static final cPadding_10 = 10.0;
+  static final cPadding_13 = 13.0;
+  static final cPadding_15 = 15.0;
 
-  // Font
-  static final cFontSize_15 = getProportionateScreenWidth(15.0);
-  
-  // Icon Size
-  static final cIconSize_12 = getProportionateScreenWidth(12.0);
+  // Width size
+  static final cWidth_5 = 5.0;
 
-  // Width Size
-  static final cWidthSize_3 = getProportionateScreenWidth(3.0);
+  // Radius size
+  static final cCornerRadius_5 = 5.0;
 
-  // Height Size
-  static final cHeightSize_20 = getProportionateScreenHeight(20.0);
+  // Blur size
+  static final cBlurRadius_10 = 10.0;
 }

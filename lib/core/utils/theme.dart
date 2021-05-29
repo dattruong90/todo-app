@@ -10,9 +10,18 @@ ThemeData buildPrimaryThemeData(BuildContext context) {
         brightness: Brightness.dark,
         elevation: 0), // Change text color of status bar
     textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)
-        .apply(bodyColor: Constants.cSecondaryTextColor),
+        .apply(bodyColor: Constants.cPrimaryVariantTextColor),
     colorScheme: ColorScheme.light().copyWith(
+        // Text color
         primary: Constants.cPrimaryTextColor,
-        secondary: Constants.cSecondaryTextColor)
+        primaryVariant: Constants.cPrimaryVariantTextColor,
+        secondary: Constants.cSecondTextColor,
+        // Icon color
+        surface: Constants.cIconColor,
+        // Background color
+        background: Constants.cBackgroundColor,
+        // Button color
+        onBackground: Constants.cButtonBackgroundColor
+    )
   );
 }
