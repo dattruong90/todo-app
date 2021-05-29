@@ -10,4 +10,14 @@ class TodoRepositoryImplement implements TodoRepository {
   Future<List<Todo>> fetchTodos() {
     return localSource.fetchTodos();
   }
+
+  @override
+  Future<void> addTodo(Todo task) {
+    return localSource.addTodo(task);
+  }
+
+  @override
+  Future<void> deleteTodo(String id) {
+    return localSource.deleteTodo(id);
+  }
 }

@@ -9,4 +9,12 @@ class TodoUsecase {
   Future<List<Todo>> fetchTodos() async {
     return await this._todoRepository.fetchTodos();
   }
+
+  Future<void> addTodo(Todo task) async {
+    return await this._todoRepository.addTodo(task);
+  }
+
+  Future<void> deleteTodo(String id) async {
+    return await this._todoRepository.deleteTodo(id);
+  }
 }
