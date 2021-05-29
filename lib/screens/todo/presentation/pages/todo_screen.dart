@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/utils/modal.dart';
-import 'package:todo_app/screens/todo/presentation/pages/todo_lst_widget.dart';
+import 'package:todo_app/screens/todo/presentation/pages/todo_create_screen.dart';
+import 'package:todo_app/screens/todo/presentation/widgets/todo_lst_widget.dart';
 
 class TodoScreen extends StatefulWidget {
   @override
@@ -21,9 +22,9 @@ class _TodoScreenState extends State<TodoScreen> {
   Widget _buildFloatActionButton() {
     return FloatingActionButton(
       onPressed: () {
-        Modal.showBottomSheet(context);
+        Modal.showBottomSheet(context, TodoCreateScreen(), 260);
       },
-      child: Icon(Icons.add, color: Theme.of(context).colorScheme.surface, size: 30,),
+      child: Icon(Icons.add, color: Theme.of(context).colorScheme.surface, size: Constants.cIcon_30),
       backgroundColor: Theme.of(context).colorScheme.onBackground,
     );
   }

@@ -36,6 +36,10 @@ dependencies:
   get_it: ^6.1.1
   # fonts
   google_fonts: ^2.0.0
+  # Datetime format
+  intl: ^0.17.0
+  grouped_list: ^4.0.0
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:
