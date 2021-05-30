@@ -36,7 +36,8 @@ class TodoScreenBloc extends Bloc<TodoScreenEvent, TodoScreenState> {
   Stream<TodoScreenState> _mapAddTodoScreenToState(Todo task) async* {
     yield TodoScreenLoading();
     await this.todoUsecase.addTodo(task);
-    yield TodoScreenSuccess();
+    final tasks = await this.todoUsecase.fetchTodos();
+    yield TodoScreenLoaded(tasks);
   }
 
   Stream<TodoScreenState> _mapMakeDoneTodoScreenToState(String id) async* {

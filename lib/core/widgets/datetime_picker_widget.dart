@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:todo_app/core/utils/constants.dart';
 
 class DatetimePickerWidget extends StatefulWidget {
+  final Function _setDateTime;
+  DatetimePickerWidget(this._setDateTime);
   @override
   _DatetimePickerWidgetState createState() => _DatetimePickerWidgetState();
 }
@@ -25,7 +27,8 @@ class _DatetimePickerWidgetState extends State<DatetimePickerWidget> {
           Text(
             this._getText(),
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: Constants.cFontSize_13, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: Constants.cFontSize_13, fontWeight: FontWeight.w600),
           ),
           SizedBox(width: 5),
           RotatedBox(
@@ -44,14 +47,18 @@ class _DatetimePickerWidgetState extends State<DatetimePickerWidget> {
     final time = await pickTime(context);
     if (time == null) return;
 
+    final dateTime = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      time.hour,
+      time.minute,
+    );
+
+    widget._setDateTime(dateTime);
+
     setState(() {
-      _dateTime = DateTime(
-        date.year,
-        date.month,
-        date.day,
-        time.hour,
-        time.minute,
-      );
+      _dateTime = dateTime;
     });
   }
 
@@ -60,7 +67,7 @@ class _DatetimePickerWidgetState extends State<DatetimePickerWidget> {
     final newDate = await showDatePicker(
         context: context,
         helpText: 'Select date',
-        initialDate: this._dateTime ?? initialDate,
+        initialDate: _dateTime ?? initialDate,
         firstDate: DateTime(DateTime.now().year - 5),
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (BuildContext context, Widget child) {
@@ -90,8 +97,7 @@ class _DatetimePickerWidgetState extends State<DatetimePickerWidget> {
   Future<TimeOfDay> pickTime(BuildContext context) async {
     final newTime = await showTimePicker(
         context: context,
-        initialTime: TimeOfDay(
-                hour: this._dateTime.hour, minute: this._dateTime.minute),
+        initialTime: TimeOfDay(hour: _dateTime.hour, minute: _dateTime.minute),
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData.light().copyWith(

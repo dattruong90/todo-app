@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/widgets/datetime_picker_widget.dart';
 import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_bloc.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../domain/entities/todo.dart';
+import '../blocs/todo_screen_event.dart';
 
 class TodoCreateScreen extends StatefulWidget {
   @override
@@ -13,12 +17,24 @@ class TodoCreateScreen extends StatefulWidget {
 class _TodoCreateScreenState extends State<TodoCreateScreen> {
   final _formKey = GlobalKey<FormState>();
   TodoScreenBloc _todoScreenBloc;
+  final TextEditingController _taskEditingController = TextEditingController();
+  DateTime _dateTimeText;
+  final _uuid = Uuid();
 
   @override
   void initState() {
-    super.initState();
     this._todoScreenBloc = BlocProvider.of<TodoScreenBloc>(context);
-    print(this._todoScreenBloc);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _taskEditingController.dispose();
+    super.dispose();
+  }
+
+  void setDateTime(DateTime dateTime) {
+    _dateTimeText = dateTime;
   }
 
   @override
@@ -84,6 +100,8 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
+                          autofocus: false,
+                          controller: this._taskEditingController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter task';
@@ -108,14 +126,19 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                           style: TextStyle(fontSize: Constants.cFontSize_13),
                         ),
                         SizedBox(height: 5),
-                        DatetimePickerWidget(),
+                        DatetimePickerWidget(this.setDateTime),
                         SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           child: TextButton(
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                
+                                this._todoScreenBloc.add(AddTodoScreen(Todo(
+                                    this._uuid.v1(),
+                                    this._dateTimeText,
+                                    this._taskEditingController.text,
+                                    false)));
+                                this._taskEditingController.text = '';
                               }
                             },
                             child: Text("Add task"),

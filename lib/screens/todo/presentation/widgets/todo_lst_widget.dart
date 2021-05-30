@@ -9,6 +9,8 @@ import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_bloc.dart';
 import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_event.dart';
 import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_state.dart';
 
+import '../../../../core/utils/constants.dart';
+
 class TodoListWidget extends StatefulWidget {
   @override
   _TodoListWidgetState createState() => _TodoListWidgetState();
@@ -19,9 +21,9 @@ class _TodoListWidgetState extends State<TodoListWidget> {
 
   @override
   void initState() {
-    super.initState();
     this._todoScreenBloc = BlocProvider.of<TodoScreenBloc>(context);
     this._todoScreenBloc.add(FetchTodoScreen());
+    super.initState();
   }
 
   @override
@@ -29,7 +31,15 @@ class _TodoListWidgetState extends State<TodoListWidget> {
     return BlocBuilder<TodoScreenBloc, TodoScreenState>(
       builder: (context, state) {
         if (state is TodoScreenLoading) {
-          return Center(child: CircularProgressIndicator());
+          return Padding(
+            padding: EdgeInsets.only(top: Constants.cPadding_10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+              ],
+            ),
+          );
         } else if (state is TodoScreenFailure) {
           return Center(
             child: Text(state.message),

@@ -1,6 +1,8 @@
 import 'package:todo_app/screens/todo/domain/entities/todo.dart';
 import 'package:todo_app/screens/todo/domain/repositories/todo_repository.dart';
 
+import '../../data/models/todo_model.dart';
+
 class TodoUsecase {
   final TodoRepository _todoRepository;
 
@@ -11,7 +13,7 @@ class TodoUsecase {
   }
 
   Future<Todo> addTodo(Todo task) async {
-    return await this._todoRepository.addTodo(task);
+    return await this._todoRepository.addTodo(TodoModel(task.id, task.date, task.task, task.status));
   }
 
   Future<Todo> deleteTodo(String id) async {
