@@ -18,7 +18,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
   final _formKey = GlobalKey<FormState>();
   TodoScreenBloc _todoScreenBloc;
   final TextEditingController _taskEditingController = TextEditingController();
-  DateTime _dateTimeText;
+  DateTime _dateTimeText = DateTime.now();
   final _uuid = Uuid();
 
   @override

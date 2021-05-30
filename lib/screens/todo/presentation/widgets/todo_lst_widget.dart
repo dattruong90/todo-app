@@ -89,7 +89,6 @@ class _TodoListWidgetState extends State<TodoListWidget> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              print(todo.id);
               this._todoScreenBloc.add(MakeDoneTodoScreen(todo.id)); 
             },
             child: todo.status
@@ -119,7 +118,6 @@ class _TodoListWidgetState extends State<TodoListWidget> {
           ),
           GestureDetector(
             onTap: () {
-              print(todo.id);
               this._todoScreenBloc.add(DeleteTodoScreen(todo.id));
             },
             child: Image.asset('assets/images/trash.png', width: 20, height: 20, fit: BoxFit.fill,),
