@@ -12,12 +12,17 @@ class TodoRepositoryImplement implements TodoRepository {
   }
 
   @override
-  Future<void> addTodo(Todo task) {
+  Future<Todo> addTodo(Todo task) {
     return localSource.addTodo(task);
   }
 
   @override
-  Future<void> deleteTodo(String id) {
+  Future<Todo> deleteTodo(String id) {
     return localSource.deleteTodo(id);
+  }
+
+  @override
+  Future<Todo> makeDoneTodo(String id) {
+     return localSource.makeDoneTodo(id);
   }
 }

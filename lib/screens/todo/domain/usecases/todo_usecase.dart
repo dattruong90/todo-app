@@ -10,11 +10,15 @@ class TodoUsecase {
     return await this._todoRepository.fetchTodos();
   }
 
-  Future<void> addTodo(Todo task) async {
+  Future<Todo> addTodo(Todo task) async {
     return await this._todoRepository.addTodo(task);
   }
 
-  Future<void> deleteTodo(String id) async {
+  Future<Todo> deleteTodo(String id) async {
     return await this._todoRepository.deleteTodo(id);
+  }
+
+  Future<Todo> makeDoneTodo(String id) async {
+    return await this._todoRepository.makeDoneTodo(id);
   }
 }

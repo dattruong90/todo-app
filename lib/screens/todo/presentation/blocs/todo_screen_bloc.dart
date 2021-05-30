@@ -20,6 +20,8 @@ class TodoScreenBloc extends Bloc<TodoScreenEvent, TodoScreenState> {
         yield* _mapAddTodoScreenToState(event.task);
       } else if (event is DeleteTodoScreen) {
         yield* _mapDeleteTodoScreenToState(event.id);
+      } else if (event is MakeDoneTodoScreen) {
+        yield* _mapMakeDoneTodoScreenToState(event.id);
       }
     } catch (e) {
       yield TodoScreenFailure(e.toString());
@@ -32,12 +34,20 @@ class TodoScreenBloc extends Bloc<TodoScreenEvent, TodoScreenState> {
   }
 
   Stream<TodoScreenState> _mapAddTodoScreenToState(Todo task) async* {
+    yield TodoScreenLoading();
     await this.todoUsecase.addTodo(task);
+    yield TodoScreenSuccess();
+  }
+
+  Stream<TodoScreenState> _mapMakeDoneTodoScreenToState(String id) async* {
+    yield TodoScreenLoading();
+    await this.todoUsecase.makeDoneTodo(id);
     final tasks = await this.todoUsecase.fetchTodos();
     yield TodoScreenLoaded(tasks);
   }
 
   Stream<TodoScreenState> _mapDeleteTodoScreenToState(String id) async* {
+    yield TodoScreenLoading();
     await this.todoUsecase.deleteTodo(id);
     final tasks = await this.todoUsecase.fetchTodos();
     yield TodoScreenLoaded(tasks);

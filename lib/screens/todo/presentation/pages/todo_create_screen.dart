@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/widgets/datetime_picker_widget.dart';
+import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_bloc.dart';
 
 class TodoCreateScreen extends StatefulWidget {
   @override
@@ -10,6 +12,14 @@ class TodoCreateScreen extends StatefulWidget {
 
 class _TodoCreateScreenState extends State<TodoCreateScreen> {
   final _formKey = GlobalKey<FormState>();
+  TodoScreenBloc _todoScreenBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    this._todoScreenBloc = BlocProvider.of<TodoScreenBloc>(context);
+    print(this._todoScreenBloc);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +114,9 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                           width: double.infinity,
                           child: TextButton(
                             onPressed: () {
-                              if (_formKey.currentState.validate()) {}
+                              if (_formKey.currentState.validate()) {
+                                
+                              }
                             },
                             child: Text("Add task"),
                             style: TextButton.styleFrom(

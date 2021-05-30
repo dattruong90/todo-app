@@ -17,6 +17,8 @@ class TodoScreenLoaded extends TodoScreenState {
   List<Object> get props => [this.tasks];
 }
 
+class TodoScreenSuccess extends TodoScreenState {}
+
 class TodoScreenFailure extends TodoScreenState {
   final String message;
 

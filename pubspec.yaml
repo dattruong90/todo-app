@@ -40,6 +40,8 @@ dependencies:
   intl: ^0.17.0
   grouped_list: ^4.0.0
   uuid: ^3.0.4
+  # Add additional capabilities to Dart Streams and StreamControllers.
+  rxdart: ^0.26.0
 
 dev_dependencies:
   flutter_test:

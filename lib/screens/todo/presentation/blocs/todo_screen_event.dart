@@ -18,6 +18,15 @@ class AddTodoScreen extends TodoScreenEvent {
   List<Object> get props => [this.task];
 }
 
+class MakeDoneTodoScreen extends TodoScreenEvent {
+  final String id;
+
+  MakeDoneTodoScreen(this.id);
+
+  @override
+  List<Object> get props => [this.id];
+}
+
 class DeleteTodoScreen extends TodoScreenEvent {
   final String id;
 

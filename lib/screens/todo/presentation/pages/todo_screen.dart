@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/utils/modal.dart';
+import 'package:todo_app/screens/todo/presentation/blocs/todo_screen_bloc.dart';
 import 'package:todo_app/screens/todo/presentation/pages/todo_create_screen.dart';
 import 'package:todo_app/screens/todo/presentation/widgets/todo_lst_widget.dart';
 
@@ -22,21 +24,23 @@ class _TodoScreenState extends State<TodoScreen> {
   Widget _buildFloatActionButton() {
     return FloatingActionButton(
       onPressed: () {
-        Modal.showBottomSheet(context, TodoCreateScreen(), 260);
+        Modal.showBottomSheet(context, BlocProvider.value(
+            value: BlocProvider.of<TodoScreenBloc>(context), child: TodoCreateScreen()), 260);
       },
-      child: Icon(Icons.add, color: Theme.of(context).colorScheme.surface, size: Constants.cIcon_30),
+      child: Icon(Icons.add,
+          color: Theme.of(context).colorScheme.surface,
+          size: Constants.cIcon_30),
       backgroundColor: Theme.of(context).colorScheme.onBackground,
     );
   }
 
   Widget _buildBody() {
     return SafeArea(
-      bottom: true, 
-      child: Padding(
-        padding: EdgeInsets.all(Constants.cPadding_15),
-        child: TodoListWidget(),
-      )
-    );
+        bottom: true,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Constants.cPadding_15),
+          child: TodoListWidget(),
+        ));
   }
 
   Widget _buildAppBar() {

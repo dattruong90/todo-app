@@ -33,6 +33,7 @@ abstract class Constants {
 
   // Marigin size
   static final cMargin_24 = 24.0;
+  static final cMargin_10 = 10.0;
 
   // Radius size
   static final cCornerRadius_5 = 5.0;
